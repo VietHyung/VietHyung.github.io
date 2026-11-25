@@ -1,174 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Le Viet Hung — Java Backend Developer</title>
   <meta name="description" content="Portfolio of Le Viet Hung, Java Backend Developer with 2+ years of experience in Spring Boot, microservices and E-commerce platforms.">
-  <meta name="theme-color" content="#faf6ee">
+  <meta name="theme-color" content="#07080c">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <noscript><style>#loader{display:none}.reveal,.line>span{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
-  <!-- Reusable decorative shapes -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="leaf" viewBox="0 0 80 40">
-        <path d="M2 20 C 18 -2, 56 -2, 78 20 C 56 42, 18 42, 2 20 Z"/>
-        <path d="M6 20 H 72" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.6" stroke-linecap="round"/>
-      </symbol>
-      <symbol id="branch" viewBox="0 0 220 130">
-        <path d="M6 122 C 60 112, 120 84, 212 20" fill="none" stroke="var(--stem)" stroke-width="3.5" stroke-linecap="round"/>
-        <use href="#leaf" x="22" y="78" width="54" height="27" transform="rotate(-38 49 91)" style="fill:var(--leaf)"/>
-        <use href="#leaf" x="40" y="108" width="50" height="25" transform="rotate(28 65 120)" style="fill:var(--leaf-2)"/>
-        <use href="#leaf" x="72" y="56" width="58" height="29" transform="rotate(-50 101 70)" style="fill:var(--leaf-2)"/>
-        <use href="#leaf" x="92" y="86" width="54" height="27" transform="rotate(14 119 100)" style="fill:var(--leaf)"/>
-        <use href="#leaf" x="128" y="32" width="56" height="28" transform="rotate(-58 156 46)" style="fill:var(--leaf)"/>
-        <use href="#leaf" x="146" y="62" width="50" height="25" transform="rotate(8 171 74)" style="fill:var(--leaf-2)"/>
-        <use href="#leaf" x="176" y="4" width="44" height="22" transform="rotate(-70 198 15)" style="fill:var(--leaf-2)"/>
-      </symbol>
-      <symbol id="flower" viewBox="-50 -50 100 100">
-        <g style="fill:var(--petal)">
-          <ellipse cx="0" cy="-22" rx="12" ry="21"/>
-          <ellipse cx="0" cy="-22" rx="12" ry="21" transform="rotate(60)"/>
-          <ellipse cx="0" cy="-22" rx="12" ry="21" transform="rotate(120)"/>
-          <ellipse cx="0" cy="-22" rx="12" ry="21" transform="rotate(180)"/>
-          <ellipse cx="0" cy="-22" rx="12" ry="21" transform="rotate(240)"/>
-          <ellipse cx="0" cy="-22" rx="12" ry="21" transform="rotate(300)"/>
-        </g>
-        <circle r="10" style="fill:var(--core)"/>
-        <circle r="4" fill="rgba(255,255,255,.55)" cx="-3" cy="-3"/>
-      </symbol>
-      <symbol id="sparkle" viewBox="-10 -10 20 20">
-        <path d="M0 -9 C 1 -3, 3 -1, 9 0 C 3 1, 1 3, 0 9 C -1 3, -3 1, -9 0 C -3 -1, -1 -3, 0 -9 Z"/>
-      </symbol>
-    </defs>
-  </svg>
+  <!-- Intro loader -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <img src="assets/favicon.png" alt="" width="64" height="64">
+      <p class="loader-name">Le Viet Hung</p>
+      <div class="loader-bar"><i id="loaderBar"></i></div>
+      <span class="loader-count" id="loaderCount">0</span>
+    </div>
+  </div>
 
   <div class="progress" id="progress"></div>
-  <div class="bg-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <header class="nav" id="nav">
-    <div class="container nav-inner">
-      <a class="logo" href="#top"><img src="assets/favicon.png" alt="" width="30" height="30"><span>Hung</span></a>
-      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
-      <nav id="menu">
+  <header class="nav-wrap">
+    <nav class="nav" id="nav">
+      <a class="logo" href="#top" aria-label="Home"><img src="assets/favicon.png" alt="" width="28" height="28"><span>hung<b>.dev</b></span></a>
+      <div class="links" id="menu">
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-      </nav>
-    </div>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn" id="theme" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </nav>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero container">
       <div class="hero-text">
-        <p class="eyebrow reveal" style="--d:.05s">👋 Hello, I'm</p>
-        <h1 class="reveal" style="--d:.15s">Le Viet <span class="grad">Hung</span></h1>
-        <p class="role reveal" style="--d:.25s"><span id="typed">Java Backend Developer</span><span class="caret"></span></p>
-        <p class="lead reveal" style="--d:.35s">
-          2+ years building scalable E-commerce and business platforms with Java,
-          Spring Framework and microservices architecture.
+        <span class="badge reveal" style="--d:.1s"><i class="pulse"></i> Open to new opportunities</span>
+        <h1>
+          <span class="line"><span style="--d:.15s">Le Viet</span></span>
+          <span class="line"><span style="--d:.28s" class="grad">Hung</span></span>
+        </h1>
+        <p class="role reveal" style="--d:.45s"><span class="mono">&gt;</span> <span id="typed">Java Backend Developer</span><span class="caret"></span></p>
+        <p class="lead reveal" style="--d:.55s">
+          I build scalable E-commerce and business platforms with Java, Spring Framework
+          and microservices — 2+ years of shipping reliable backend systems.
         </p>
-        <div class="cta reveal" style="--d:.45s">
-          <a class="btn primary" href="#projects">View projects <span class="arrow">→</span></a>
-          <a class="btn" href="#contact">Get in touch</a>
+        <div class="cta reveal" style="--d:.65s">
+          <a class="btn primary magnetic" href="#projects"><span>View projects</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn magnetic" href="#contact"><span>Contact me</span></a>
         </div>
-        <ul class="stats reveal" style="--d:.55s">
-          <li><strong data-count="2" data-suffix="+">0</strong><span>Years exp.</span></li>
-          <li><strong data-count="4">0</strong><span>Projects</span></li>
-          <li><strong data-count="30" data-suffix="+">0</strong><span>Team size</span></li>
+        <ul class="socials reveal" style="--d:.75s">
+          <li><a href="https://github.com/VietHyung" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/hyunle" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a></li>
+          <li><a href="mailto:levieth4869@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></li>
         </ul>
       </div>
 
-      <div class="hero-art reveal" style="--d:.2s">
-        <div class="ring"></div>
-        <div class="avatar-frame tilt">
-          <img src="assets/avatar-hero.jpg" alt="Cartoon avatar of Le Viet Hung" width="720" height="720">
+      <div class="hero-art reveal" style="--d:.25s">
+        <div class="avatar-card tilt" id="heroTilt">
+          <div class="avatar-glow"></div>
+          <img src="assets/avatar-dark.jpg" alt="Cartoon avatar of Le Viet Hung" width="720" height="720">
         </div>
-        <svg class="deco d-branch-1" viewBox="0 0 220 130"><use href="#branch"/></svg>
-        <svg class="deco d-branch-2" viewBox="0 0 220 130"><use href="#branch"/></svg>
-        <svg class="deco d-flower-1" viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <svg class="deco d-flower-2" viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <svg class="deco d-spark-1" viewBox="-10 -10 20 20"><use href="#sparkle"/></svg>
-        <svg class="deco d-spark-2" viewBox="-10 -10 20 20"><use href="#sparkle"/></svg>
-        <div class="chip c1">☕ Spring Boot</div>
-        <div class="chip c2">🐳 Docker</div>
-        <div class="chip c3">☁️ Microservices</div>
+        <div class="float-card code-card">
+          <div class="dots"><i></i><i></i><i></i><span class="mono">LeVietHung.java</span></div>
+<pre class="mono"><span class="k">public class</span> <span class="t">LeVietHung</span> {
+  <span class="t">String</span> role  = <span class="s">"Backend Dev"</span>;
+  <span class="t">String</span> stack = <span class="s">"Spring Boot"</span>;
+  <span class="t">int</span>    years = <span class="n">2</span>;
+  <span class="t">boolean</span> openToWork = <span class="k">true</span>;
+}</pre>
+        </div>
+        <div class="float-card stat-card">
+          <span class="mono">// experience</span>
+          <strong>2+ years</strong>
+          <i class="spark"></i>
+        </div>
       </div>
+      <a class="scroll-hint" href="#about" aria-label="Scroll down"><i></i></a>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="container">
-      <div class="section-title reveal">
-        <svg viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <h2>About me</h2>
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        <span>Java</span><span>Spring Boot</span><span>Microservices</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>Docker</span><span>REST API</span><span>TypeScript</span><span>AWS</span>
+        <span>Java</span><span>Spring Boot</span><span>Microservices</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>Docker</span><span>REST API</span><span>TypeScript</span><span>AWS</span>
       </div>
-      <div class="about">
-        <div class="about-art reveal">
-          <div class="avatar-frame small tilt">
-            <img src="assets/avatar-about.jpg" alt="Avatar of Le Viet Hung with pencil, lightbulb and gears" loading="lazy" width="720" height="720">
-          </div>
-          <svg class="deco a-branch" viewBox="0 0 220 130"><use href="#branch"/></svg>
-          <svg class="deco a-flower" viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        </div>
-        <div class="about-text reveal" style="--d:.1s">
+    </div>
+
+    <!-- ABOUT (bento) -->
+    <section id="about" class="container">
+      <header class="section-head">
+        <p class="eyebrow mono reveal">01 / about</p>
+        <h2 class="reveal">A little about me</h2>
+      </header>
+      <div class="bento">
+        <article class="tile t-bio spot reveal">
+          <h3>Who I am</h3>
           <p>
-            I'm a Java Backend Developer working on enterprise systems at VTI Group
-            (Vietnam / Japan projects). I enjoy designing clean REST APIs, modeling data,
-            and keeping systems stable as they grow.
+            I'm a Java Backend Developer at VTI Group, working on enterprise systems for Vietnam and Japan projects.
+            I enjoy designing clean REST APIs, modeling data, and keeping systems stable as they grow.
           </p>
           <p>
-            I'm looking for an environment where I can grow technically while contributing
-            to system stability and long-term product development. My aspiration is to
-            grow as a fullstack engineer and deepen my expertise in system design and
-            scalable architectures.
+            I'm looking for an environment where I can grow technically while contributing to long-term product
+            development — and I aspire to grow as a fullstack engineer with deeper expertise in system design and scalable architectures.
           </p>
-          <ul class="facts">
-            <li><span class="ico">🎓</span><div><strong>Education</strong>B.Sc. Information Technology (Excellent) — Hanoi University of Industry, 2019–2022</div></li>
-            <li><span class="ico">🌏</span><div><strong>English</strong>IELTS 6.5 — comfortable with technical docs and discussing problems with clients</div></li>
-            <li><span class="ico">🌱</span><div><strong>Strengths</strong>Responsible, quick learner, strong problem-solving mindset, works well alone or in a team</div></li>
-          </ul>
-        </div>
+        </article>
+
+        <article class="tile t-photo spot reveal" style="--d:.08s">
+          <img src="assets/avatar-about.jpg" alt="Avatar of Le Viet Hung with a pencil, lightbulb and gears" loading="lazy" width="720" height="720">
+        </article>
+
+        <article class="tile t-stat spot reveal" style="--d:.1s">
+          <strong class="num"><span data-count="2">0</span><em>+</em></strong>
+          <span>years of experience</span>
+        </article>
+
+        <article class="tile t-stat spot reveal" style="--d:.14s">
+          <strong class="num"><span data-count="30">0</span><em>+</em></strong>
+          <span>people in the largest team</span>
+        </article>
+
+        <article class="tile t-edu spot reveal" style="--d:.1s">
+          <span class="mono tag">education</span>
+          <h3>B.Sc. Information Technology</h3>
+          <p>Hanoi University of Industry · 2019–2022<br><b>Excellent degree</b></p>
+        </article>
+
+        <article class="tile t-lang spot reveal" style="--d:.14s">
+          <span class="mono tag">english</span>
+          <h3>IELTS 6.5</h3>
+          <p>Reads technical docs and discusses problem-solving with clients.</p>
+        </article>
+
+        <article class="tile t-strength spot reveal" style="--d:.18s">
+          <span class="mono tag">strengths</span>
+          <div class="chips"><span>Responsible</span><span>Quick learner</span><span>Problem solver</span><span>Independent</span><span>Team player</span></div>
+        </article>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills" class="container">
-      <div class="section-title reveal">
-        <svg viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <h2>Skills</h2>
-      </div>
-      <div class="grid skills">
-        <div class="card glow reveal" style="--d:.0s"><div class="card-ico">⌨️</div><h3>Languages</h3><p class="tags"><span>Java</span><span>JavaScript</span><span>TypeScript</span></p></div>
-        <div class="card glow reveal" style="--d:.06s"><div class="card-ico">🍃</div><h3>Frameworks</h3><p class="tags"><span>Spring Boot</span><span>Spring MVC</span><span>Spring Batch</span><span>Spring Security</span></p></div>
-        <div class="card glow reveal" style="--d:.12s"><div class="card-ico">🧩</div><h3>Architecture</h3><p class="tags"><span>Microservices</span><span>REST API</span><span>OpenAPI (Swagger)</span></p></div>
-        <div class="card glow reveal" style="--d:.18s"><div class="card-ico">🗄️</div><h3>Databases</h3><p class="tags"><span>PostgreSQL</span><span>MongoDB</span><span>MySQL</span><span>JPA (Hibernate)</span></p></div>
-        <div class="card glow reveal" style="--d:.24s"><div class="card-ico">📬</div><h3>Messaging</h3><p class="tags"><span>RabbitMQ</span></p></div>
-        <div class="card glow reveal" style="--d:.3s"><div class="card-ico">📈</div><h3>Logging &amp; Monitoring</h3><p class="tags"><span>Logback</span><span>Fluentd</span></p></div>
-        <div class="card glow reveal" style="--d:.36s"><div class="card-ico">🐳</div><h3>Infrastructure</h3><p class="tags"><span>Docker</span><span>Linux</span><span>Bash/Shell</span><span>Cron</span><span>CI/CD</span></p></div>
+      <header class="section-head">
+        <p class="eyebrow mono reveal">02 / skills</p>
+        <h2 class="reveal">Tech I work with</h2>
+      </header>
+      <div class="skills">
+        <article class="skill spot reveal"><h3 class="mono">// languages</h3><p><span>Java</span><span>JavaScript</span><span>TypeScript</span></p></article>
+        <article class="skill spot reveal" style="--d:.05s"><h3 class="mono">// frameworks</h3><p><span>Spring Boot</span><span>Spring MVC</span><span>Spring Batch</span><span>Spring Security</span></p></article>
+        <article class="skill spot reveal" style="--d:.1s"><h3 class="mono">// architecture</h3><p><span>Microservices</span><span>REST API</span><span>OpenAPI (Swagger)</span></p></article>
+        <article class="skill spot reveal" style="--d:.05s"><h3 class="mono">// databases</h3><p><span>PostgreSQL</span><span>MongoDB</span><span>MySQL</span><span>JPA (Hibernate)</span></p></article>
+        <article class="skill spot reveal" style="--d:.1s"><h3 class="mono">// messaging &amp; logs</h3><p><span>RabbitMQ</span><span>Logback</span><span>Fluentd</span></p></article>
+        <article class="skill spot reveal" style="--d:.15s"><h3 class="mono">// infrastructure</h3><p><span>Docker</span><span>Linux</span><span>Bash/Shell</span><span>Cron</span><span>CI/CD</span></p></article>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
     <section id="experience" class="container">
-      <div class="section-title reveal">
-        <svg viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <h2>Experience</h2>
-      </div>
-      <div class="timeline">
-        <article class="item reveal">
-          <div class="item-head">
-            <h3>Backend Developer · VTI Group</h3>
-            <span class="date">Oct 2023 – Present</span>
+      <header class="section-head">
+        <p class="eyebrow mono reveal">03 / experience</p>
+        <h2 class="reveal">Where I've worked</h2>
+      </header>
+      <div class="timeline" id="timeline">
+        <div class="rail"><i id="railFill"></i></div>
+        <article class="job spot reveal">
+          <span class="node"></span>
+          <div class="job-head">
+            <div><h3>Backend Developer</h3><p class="company">VTI Group <span>· Vietnam / Japan projects</span></p></div>
+            <span class="date mono">Oct 2023 — Present</span>
           </div>
-          <p class="muted">Vietnam / Japan projects</p>
           <ul>
             <li>Developed and maintained backend services using Java, Spring Boot, Spring MVC and Spring Security.</li>
             <li>Worked on microservices-based systems focused on scalability and maintainability.</li>
@@ -178,10 +196,11 @@
             <li>Worked with CI/CD pipelines and Docker-based environments for development and deployment.</li>
           </ul>
         </article>
-        <article class="item reveal">
-          <div class="item-head">
-            <h3>Java / Backend Intern · VTI Group</h3>
-            <span class="date">Jul 2023 – Oct 2023</span>
+        <article class="job spot reveal">
+          <span class="node"></span>
+          <div class="job-head">
+            <div><h3>Java / Backend Intern</h3><p class="company">VTI Group</p></div>
+            <span class="date mono">Jul 2023 — Oct 2023</span>
           </div>
           <ul>
             <li>Learned and applied Java, JavaScript, Spring Framework and RESTful APIs.</li>
@@ -191,100 +210,90 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (stacked) -->
     <section id="projects" class="container">
-      <div class="section-title reveal">
-        <svg viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <h2>Projects</h2>
-      </div>
-      <div class="grid projects">
-        <article class="card glow project reveal">
-          <span class="badge">Featured</span>
-          <div class="item-head">
-            <h3>HM E-commerce Platform <small>Microservices</small></h3>
-            <span class="date">Oct 2024 – Present</span>
-          </div>
-          <p class="muted">Fullstack developer · Team of 30</p>
+      <header class="section-head">
+        <p class="eyebrow mono reveal">04 / projects</p>
+        <h2 class="reveal">Selected work</h2>
+      </header>
+      <div class="stack" id="stack">
+        <article class="proj spot" style="--i:0">
+          <div class="proj-top"><span class="idx mono">01</span><span class="date mono">Oct 2024 — Present</span></div>
+          <h3>HM E-commerce Platform <small>Microservices</small></h3>
+          <p class="meta mono">Fullstack developer · Team of 30</p>
           <ul>
             <li>Built a scalable E-commerce platform on a microservices architecture.</li>
             <li>Implemented product management, order processing and system integrations.</li>
             <li>Built REST APIs with Spring Boot and JPA; tested and fixed bugs to keep quality high.</li>
             <li>Onboarded newcomers and supported estimation, sprint planning and task assignment for juniors.</li>
           </ul>
-          <p class="tags"><span>Spring Boot</span><span>Thymeleaf</span><span>Docker</span><span>CI/CD</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>HAProxy</span><span>Nginx</span></p>
+          <p class="pills"><span>Spring Boot</span><span>Thymeleaf</span><span>Docker</span><span>CI/CD</span><span>PostgreSQL</span><span>MongoDB</span><span>RabbitMQ</span><span>HAProxy</span><span>Nginx</span></p>
         </article>
 
-        <article class="card glow project reveal" style="--d:.08s">
-          <div class="item-head">
-            <h3>Invoice Document Management</h3>
-            <span class="date">Jul 2024 – Oct 2024</span>
-          </div>
-          <p class="muted">Backend developer · Team of 3</p>
+        <article class="proj spot" style="--i:1">
+          <div class="proj-top"><span class="idx mono">02</span><span class="date mono">Jul 2024 — Oct 2024</span></div>
+          <h3>Invoice Document Management</h3>
+          <p class="meta mono">Backend developer · Team of 3</p>
           <ul>
             <li>Built a backend system for managing and storing import/export invoice documents.</li>
             <li>Integrated a GPT-based chatbot for automated inquiry responses and document Q&amp;A.</li>
             <li>Implemented REST APIs in TypeScript following OpenAPI (Swagger) specs.</li>
             <li>Deployed on AWS Lambda and API Gateway with DynamoDB for serverless persistence.</li>
           </ul>
-          <p class="tags"><span>TypeScript</span><span>AWS Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>OpenAPI</span></p>
+          <p class="pills"><span>TypeScript</span><span>AWS Lambda</span><span>API Gateway</span><span>DynamoDB</span><span>OpenAPI</span></p>
         </article>
 
-        <article class="card glow project reveal">
-          <div class="item-head">
-            <h3>HM E-commerce Platform <small>Monolithic</small></h3>
-            <span class="date">Nov 2023 – Jul 2024</span>
-          </div>
-          <p class="muted">Fullstack developer · Team of 20</p>
+        <article class="proj spot" style="--i:2">
+          <div class="proj-top"><span class="idx mono">03</span><span class="date mono">Nov 2023 — Jul 2024</span></div>
+          <h3>HM E-commerce Platform <small>Monolithic</small></h3>
+          <p class="meta mono">Fullstack developer · Team of 20</p>
           <ul>
             <li>Migrated modules from Seasar-Teeda to Spring MVC.</li>
             <li>Developed backend services with CRUD functionality.</li>
             <li>Refactored authentication, order processing and product catalog features.</li>
             <li>Tested and fixed bugs to ensure stability.</li>
           </ul>
-          <p class="tags"><span>Spring Boot</span><span>Spring MVC</span><span>Thymeleaf</span><span>Docker</span><span>PostgreSQL</span><span>MongoDB</span></p>
+          <p class="pills"><span>Spring Boot</span><span>Spring MVC</span><span>Thymeleaf</span><span>Docker</span><span>PostgreSQL</span><span>MongoDB</span></p>
         </article>
 
-        <article class="card glow project reveal" style="--d:.08s">
-          <div class="item-head">
-            <h3>TimeSheet Management System</h3>
-            <span class="date">Sep 2023 – Nov 2024</span>
-          </div>
-          <p class="muted">Backend developer · Team of 3</p>
+        <article class="proj spot" style="--i:3">
+          <div class="proj-top"><span class="idx mono">04</span><span class="date mono">Sep 2023 — Nov 2024</span></div>
+          <h3>TimeSheet Management System</h3>
+          <p class="meta mono">Backend developer · Team of 3</p>
           <ul>
             <li>Developed backend services for timesheet management.</li>
             <li>Implemented authentication and authorization with Spring Security and JWT.</li>
             <li>Built REST APIs with Spring Boot and JPA.</li>
           </ul>
-          <p class="tags"><span>Spring Boot</span><span>Spring Security</span><span>JWT</span><span>Thymeleaf</span><span>Docker</span><span>PostgreSQL</span><span>MongoDB</span></p>
+          <p class="pills"><span>Spring Boot</span><span>Spring Security</span><span>JWT</span><span>Thymeleaf</span><span>Docker</span><span>PostgreSQL</span><span>MongoDB</span></p>
         </article>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="container">
-      <div class="contact-card reveal">
-        <svg class="deco c-branch" viewBox="0 0 220 130"><use href="#branch"/></svg>
-        <svg class="deco c-flower" viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-        <div class="contact-text">
-          <h2>Let's work together</h2>
-          <p>Interested in working together or have a question? I'd love to hear from you.</p>
-          <div class="cta">
-            <a class="btn primary light" href="mailto:levieth4869@gmail.com">✉️ levieth4869@gmail.com</a>
-            <a class="btn ghost" href="https://www.linkedin.com/in/hyunle" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a class="btn ghost" href="https://github.com/VietHyung" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
+      <div class="contact spot reveal">
+        <img class="contact-avatar" src="assets/avatar-hero.jpg" alt="Avatar of Le Viet Hung" loading="lazy" width="720" height="720">
+        <p class="eyebrow mono">05 / contact</p>
+        <h2>Let's build something<br><span class="grad">reliable together.</span></h2>
+        <p class="lead">Have an opportunity or a question? My inbox is open.</p>
+        <div class="cta">
+          <button class="btn primary magnetic" id="copyMail" data-mail="levieth4869@gmail.com"><span id="copyLabel">levieth4869@gmail.com</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+          </button>
+          <a class="btn magnetic" href="https://www.linkedin.com/in/hyunle" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+          <a class="btn magnetic" href="https://github.com/VietHyung" target="_blank" rel="noopener"><span>GitHub</span></a>
         </div>
-        <img class="contact-avatar" src="assets/avatar-dark.jpg" alt="Avatar of Le Viet Hung with a coffee cup" loading="lazy" width="720" height="720">
       </div>
     </section>
   </main>
 
-  <footer class="container">
-    <svg class="foot-flower" viewBox="-50 -50 100 100"><use href="#flower"/></svg>
-    <p>© <span id="year"></span> Le Viet Hung · Made with ☕ and 🌿</p>
+  <footer class="container foot">
+    <span>© <span id="year"></span> Le Viet Hung</span>
+    <span class="mono">Built with HTML · CSS · JS</span>
   </footer>
 
-  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+  <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <script src="script.js"></script>
 </body>
 </html>
